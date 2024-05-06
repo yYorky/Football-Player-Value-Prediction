@@ -76,7 +76,5 @@ The models are evaluated using the following metric:
 
 - Root Mean Squared Error (RMSE)
 
-$
-{RMSE} = \sqrt{\frac{1}{n} sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
-$
+> ${RMSE} = \sqrt{\frac{1}{n} sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$
 

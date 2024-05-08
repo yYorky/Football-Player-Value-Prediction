@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/93/f4/41/93f44130795b7f3a341485d531d2d8b8.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 20%;
+            margin-right: 20px;
+        }
+
+        .result {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 15%;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 90%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .result-heading {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .result-details {
+            font-size: 16px;
+            color: #B03A2E; 
+            font-weight: bold;
+        }
+
+        
+        .result-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #239B56;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <h1>
+                <h2 class="result-heading">Player Value Prediction</h2>
+                
+            </h1>
+            <div class="mb-3">
+                <label class="form-label">Release Clause ('000)</label>
+                <input class="form-control" type="number" name="release_clause" placeholder="Enter Release Clause (0-999999)" min="0" max="999999" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Best Overall</label>
+                <input class="form-control" type="number" name="best_overall" placeholder="Enter Best Overall (40-99)" min="40" max="99" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Potential</label>
+                <input class="form-control" type="number" name="potential" placeholder="Enter Potential (40-99)" min="40" max="99" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Overall Rating</label>
+                <input class="form-control" type="number" name="overall_rating" placeholder="Enter Overall Rating (40-90)" min="40" max="90" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Wage ('000)</label>
+                <input class="form-control" type="number" name="wage" placeholder="Enter Wage (0-950)" min="0" max="950" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Age</label>
+                <input class="form-control" type="number" name="age" placeholder="Enter Age (15-54)" min="15" max="54" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Finishing</label>
+                <input class="form-control" type="number" name="finishing" placeholder="Enter Finishing (0-99)" min="0" max="99" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Composure</label>
+                <input class="form-control" type="number" name="composure" placeholder="Enter Composure (0-99)" min="0" max="99" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Total Movement</label>
+                <input class="form-control" type="number" name="total_movement" placeholder="Enter Total Movement (0-499)" min="0" max="499" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sprint Speed</label>
+                <input class="form-control" type="number" name="sprint_speed" placeholder="Enter Sprint Speed (0-99)" min="0" max="99" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">International Reputation</label>
+                <select class="form-control" name="international_reputation" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Best Position</label>
+                <select class="form-control" name="best_position" required>
+                    <option value="CAM">CAM</option>
+                    <option value="ST">ST</option>
+                    <option value="LWB">LWB</option>
+                    <option value="CM">CM</option>
+                    <option value="CB">CB</option>
+                    <option value="CDM">CDM</option>
+                    <option value="RM">RM</option>
+                    <option value="LM">LM</option>
+                    <option value="RWB">RWB</option>
+                    <option value="RB">RB</option>
+                    <option value="LB">LB</option>
+                    <option value="LW">LW</option>
+                    <option value="GK">GK</option>
+                    <option value="RW">RW</option>
+                    <option value="CF">CF</option>
+                </select>
+            </div>
+            <br>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Predict Player Value" />
+            </div>
+        </form>
+    </div>
+
+    <div class="result">
+        <h2 class="result-heading">Prediction Result</h2>
+        <p>
+            The predicted value for the player with these inputs:<br>
+            <br>
+            Release Clause ('000): <span class="result-details">{{ request.form.get("release_clause") }}</span><br>
+            Best Overall: <span class="result-details">{{ request.form.get("best_overall") }}</span><br>
+            Potential: <span class="result-details">{{ request.form.get("potential") }}</span><br>
+            Overall Rating: <span class="result-details">{{ request.form.get("overall_rating") }}</span><br>
+            Wage ('000): <span class="result-details">{{ request.form.get("wage") }}</span><br>
+            Age: <span class="result-details">{{ request.form.get("age") }}</span><br>
+            Finishing: <span class="result-details">{{ request.form.get("finishing") }}</span><br>
+            Composure: <span class="result-details">{{ request.form.get("composure") }}</span><br>
+            Total Movement: <span class="result-details">{{ request.form.get("total_movement") }}</span><br>
+            Sprint Speed: <span class="result-details">{{ request.form.get("sprint_speed") }}</span><br>
+            International Reputation: <span class="result-details">{{ request.form.get("international_reputation") }}</span><br>
+            Best Position: <span class="result-details">{{ request.form.get("best_position") }}</span><br>
+            <br>
+            is <span class="result-value">{{ "{:,.0f} K€".format(results) }}</span>.
+        </p>
+    </div>
+</body>
+</html>
+
+
+       

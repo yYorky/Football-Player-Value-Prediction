@@ -49,14 +49,14 @@ project-root/
 6. To run the model and generate the pkl file needed to deploy the webapp, type in the terminal `python src/components/main.py`.
 7. check the logs folder if there are exceptions otherwise it should show something like the following.
 <p align="center">
-  <img src="https://github.com/yYorky/aiap-yeo-york-yong-163A/blob/main/static/main_py_successful_log.JPG" alt="image"/>
+  <img src="https://github.com/yYorky/Football-Player-Value-Prediction/blob/main/static/Log%20Generated.JPG" alt="image"/>
 </p>
 
 8. To run the webapp, type in the terminal `python app.py`
 9. This will deploy a simple webapp (connect to URL 127.0.0.1:5000/predictvalue)
 10. Select the available options and click submit to obtain a prediction from the model.
 <p align="center">
-  <img src="https://github.com/yYorky/aiap-yeo-york-yong-163A/blob/main/static/main_py_successful_log.JPG" alt="image"/>
+  <img src="https://github.com/yYorky/Football-Player-Value-Prediction/blob/main/static/webapp.JPG" alt="image"/>
 </p>
 
 
@@ -100,6 +100,7 @@ The pipeline consists of the following steps:
 ## Overview of key findings from Exploratory Data Analysis
 
 ### Insights for Data Preprocessing
+
 | No. | Action | Reason|
 | --- | ------ | ------|
 |1| Drop Columns: Unnamed: 64, Name, Team & Contract| Nan Values, or not useful|
